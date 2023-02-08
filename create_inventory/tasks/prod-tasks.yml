@@ -1,0 +1,105 @@
+   - name: gather Excludes
+      ansible.builtin.slurp:
+        src: "{{ inventory_src }}excludes_hostlist.txt"
+      register: excludes_hosts
+
+    - name: print out variable
+      ansible.builtin.debug:
+        msg: "{{ excludes_hosts }}"
+
+    - name: gather  DLT 7
+      ansible.builtin.slurp:
+        src: "{{ inventory_src }}dlt07_hostlist.txt"
+      register: dlt07_hosts
+        
+    - name: gather DLT 8
+      ansible.builtin.slurp:
+        src: "{{ inventory_src }}dlt08_hostlist.txt"
+      register: dlt08_hosts
+        
+    - name: gather DLT 9
+      ansible.builtin.slurp:
+        src: "{{ inventory_src }}dlt09_hostlist.txt"
+      register: dlt09_hosts
+
+    - name: gather DLT 10
+      ansible.builtin.slurp:
+        src: "{{ inventory_src }}dlt10_hostlist.txt"
+      register: dlt10_hosts
+
+    - name: gather DLT 11
+      ansible.builtin.slurp:
+        src: "{{ inventory_src }}dlt11_hostlist.txt"
+      register: dlt11_hosts
+
+    - name: gather DLT 12
+      ansible.builtin.slurp:
+        src: "{{ inventory_src }}{{ penv }}12_hostlist.txt"
+      register: "{{ penv }}12_hosts
+           
+    - name: Create new inventory file
+      copy:
+        dest: "{{ inventory_out_prod }}"
+        content: |
+          [excludes]
+          [prod7]
+          [prod8]
+          [prod9]
+          [prod10]
+          [prod11]
+          [prod12]
+          [dr7]
+          [dr8]
+          [dr9]
+          [dr10]
+          [dr11]
+          [dr12]
+
+    - name: write Excludes
+      lineinfile:
+        path: "{{ inventory_out_prod }}"
+        line: "{{ excludes_hosts.content|b64decode }}"
+        insertafter: '^\[excludes\]'
+        state: present
+
+    - name: write PROD 7
+      lineinfile:
+        path: "{{ inventory_out_prod }}"
+        line: "{{ prod07_hosts.content|b64decode }}"
+        insertafter: '^\[prod7\]'
+        state: present
+
+    - name: write PROD 8
+      lineinfile:
+        path: "{{ inventory_out_prod }}"
+        line: "{{ prod08_hosts.content|b64decode }}"
+        insertafter: '^\[prod8\]'
+        state: present
+
+    - name: write PROD 9
+      lineinfile:
+        path: "{{ inventory_out_prod }}"
+        line: "{{ prod09_hosts.content|b64decode }}"
+        insertafter: '^\[prod9\]'
+        state: present
+
+    - name: write PROD 10
+      lineinfile:
+        path: "{{ inventory_out_prod }}"
+        line: "{{ prod10_hosts.content|b64decode }}"
+        insertafter: '^\[prod10\]'
+        state: present
+
+    - name: write PROD 11
+      lineinfile:
+        path: "{{ inventory_out_prod }}"
+        line: "{{ prod11_hosts.content|b64decode }}"
+        insertafter: '^\[prod11\]'
+        state: present
+
+    - name: write PROD 12
+      lineinfile:
+        path: "{{ inventory_out_prod }}"
+        line: "{{ prod12_hosts.content|b64decode }}"
+        insertafter: '^\[prod12\]'
+        state: present
