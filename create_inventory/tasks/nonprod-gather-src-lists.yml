@@ -1,0 +1,35 @@
+---
+    - name: gather Excludes
+      ansible.builtin.slurp:
+        src: "{{ inventory_src_nonprod }}nonprod_excludes_hostlist.txt"
+      register: nonprod_excludes_hosts
+ 
+    - name: gather  {{ dlt_day7 }}
+      ansible.builtin.slurp:
+        src: "{{ inventory_src_nonprod }}{{ dlt_day7 }}_hostlist.txt"
+      register: dlt_day7_hosts
+ 
+    - name: gather {{ dlt_day8 }}
+      ansible.builtin.slurp:
+        src: "{{ inventory_src_nonprod }}{{ dlt_day8 }}_hostlist.txt"
+      register: dlt_day8_hosts
+ 
+    - name: gather {{ dlt_day9 }}
+      ansible.builtin.slurp:
+        src: "{{ inventory_src_nonprod }}{{ dlt_day9 }}_hostlist.txt"
+      register: dlt_day9_hosts
+ 
+    - name: gather {{ dlt_day10 }}
+      ansible.builtin.slurp:
+        src: "{{ inventory_src_nonprod }}{{ dlt_day10 }}_hostlist.txt"
+      register: dlt_day10_hosts
+ 
+    - name: gather {{ dlt_day11 }}
+      ansible.builtin.slurp:
+        src: "{{ inventory_src_nonprod }}{{ dlt_day11 }}_hostlist.txt"
+      register: dlt_day11_hosts
+    
+    - name: gather {{ dlt_day12 }}
+      ansible.builtin.slurp:
+        src: "{{ inventory_src_nonprod }}{{ dlt_day12 }}_hostlist.txt"
+      register: dlt_day12_hosts

@@ -1,0 +1,49 @@
+---
+    - name: write Excludes
+      lineinfile:
+        path: "{{ inventory_out_prod }}"
+        line: "{{ excludes_hosts.content|b64decode }}"
+        insertafter: '^\[excludes\]'
+        state: present
+ 
+    - name: write {{ prod_day7 }}
+      lineinfile:
+        path: "{{ inventory_out_prod }}"
+        line: "{{ prod_day7_hosts.content|b64decode }}"
+        insertafter: '^\[{{ prod_day7 }}\]'
+        state: present
+ 
+    - name: write {{ prod_day8 }}
+      lineinfile:
+        path: "{{ inventory_out_prod }}"
+        line: "{{ prod_day8_hosts.content|b64decode }}"
+        insertafter: '^\[{{ prod_day8 }}\]'
+        state: present
+ 
+    - name: write {{ prod_day9 }}
+      lineinfile:
+        path: "{{ inventory_out_prod }}"
+        line: "{{ prod_day9_hosts.content|b64decode }}"
+        insertafter: '^\[{{ prod_day9 }}\]'
+        state: present
+ 
+    - name: write {{ prod_day10 }}
+      lineinfile:
+        path: "{{ inventory_out_prod }}"
+        line: "{{ prod_day10_hosts.content|b64decode }}"
+        insertafter: '^\[{{ prod_day10 }}\]'
+        state: present
+ 
+    - name: write {{ prod_day11 }}
+      lineinfile:
+        path: "{{ inventory_out_prod }}"
+        line: "{{ prod_day11_hosts.content|b64decode }}"
+        insertafter: '^\[{{ prod_day11 }}\]'
+        state: present
+ 
+    - name: write {{ prod_day12 }}
+      lineinfile:
+        path: "{{ inventory_out_prod }}"
+        line: "{{ prod_day12_hosts.content|b64decode }}"
+        insertafter: '^\[{{ prod_day12 }}\]'
+        state: present

@@ -1,0 +1,49 @@
+---
+    - name: write Excludes
+      lineinfile:
+        path: "{{ inventory_out_nonprod }}"
+        line: "{{ nonprod_excludes_hosts.content|b64decode }}"
+        insertafter: '^\[excludes\]'
+        state: present
+        
+    - name: write {{ dlt_day7 }}
+      lineinfile:
+        path: "{{ inventory_out_nonprod }}"
+        line: "{{ dlt_day7_hosts.content|b64decode }}"
+        insertafter: '^\[{{ dlt_day7 }}\]'
+        state: present
+        
+    - name: write {{ dlt_day8 }}
+      lineinfile:
+        path: "{{ inventory_out_nonprod }}"
+        line: "{{ dlt_day8_hosts.content|b64decode }}"
+        insertafter: '^\[{{ dlt_day8 }}\]'
+        state: present
+        
+    - name: write {{ dlt_day9 }}
+      lineinfile:
+        path: "{{ inventory_out_nonprod }}"
+        line: "{{ dlt_day9_hosts.content|b64decode }}"
+        insertafter: '^\[{{dlt_day9}}\]'
+        state: present
+        
+    - name: write {{ dlt_day10 }}
+      lineinfile:
+        path: "{{ inventory_out_nonprod }}"
+        line: "{{ dlt_day10_hosts.content|b64decode }}"
+        insertafter: '^\[{{ dlt_day10 }}\]'
+        state: present
+        
+    - name: write {{ dlt_day11 }}
+      lineinfile:
+        path: "{{ inventory_out_nonprod }}"
+        line: "{{ dlt_day11_hosts.content|b64decode }}"
+        insertafter: '^\[{{ dlt_day11 }}\]'
+        state: present
+        
+    - name: write {{ dlt_day12 }}
+      lineinfile:
+        path: "{{ inventory_out_nonprod }}"
+        line: "{{ dlt_day12_hosts.content|b64decode }}"
+        insertafter: '^\[{{ dlt_day12 }}\]'
+        state: present

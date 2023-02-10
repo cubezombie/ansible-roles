@@ -1,0 +1,47 @@
+## NonProd vars
+## where the playbook outputs the finished list and where the src lists are
+inventory_out_nonprod: /etc/ansible/inventory/Quarterly-NonProd
+inventory_src_nonprod: /root/inventory-src/nonprod/
+inventory_main_nonprod: Quarterly-NonProd
+inventory_main_prod: Quarterly-Prod
+
+## Patch groups for Ansible
+dlt_day7: dlt7
+dlt_day8: dlt8
+dlt_day9: dlt9
+dlt_day10: dlt10
+dlt_day11: dlt11
+dlt_day12: dlt12
+qa_day7: qa7 
+qa_day8: qa8 
+qa_day9: qa9 
+qa_day10: qa10
+qa_day11: qa11
+qa_day12: qa12
+
+## Environments
+denv: dev
+qenv: qa
+
+## Prod vars
+## Where the playbook outputs the finished list and where the src lists are
+inventory_out_prod: /etc/ansible/inventory/Quarterly-Prod
+inventory_src_prod: /root/inventory-src/prod/
+
+## Patch groups for Ansible
+prod_day7: prod7
+prod_day8: prod8
+prod_day9: prod9
+prod_day10: prod10
+prod_day11: prod11
+prod_day12: prod12
+dr_day7: dr7
+dr_day8: dr8
+dr_day9: dr9
+dr_day10: dr10
+dr_day11: dr11
+dr_day12: dr12
+
+## Environments
+penv: prod
+drenv: dr
