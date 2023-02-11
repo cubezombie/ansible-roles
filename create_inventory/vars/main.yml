@@ -3,7 +3,6 @@
 inventory_out_nonprod: /etc/ansible/inventory/Quarterly-NonProd
 inventory_src_nonprod: /root/inventory-src/nonprod/
 inventory_main_nonprod: Quarterly-NonProd
-inventory_main_prod: Quarterly-Prod
 
 ## Patch groups for Ansible
 dlt_day7: dlt7
@@ -27,6 +26,7 @@ qenv: qa
 ## Where the playbook outputs the finished list and where the src lists are
 inventory_out_prod: /etc/ansible/inventory/Quarterly-Prod
 inventory_src_prod: /root/inventory-src/prod/
+inventory_main_prod: Quarterly-Prod
 
 ## Patch groups for Ansible
 prod_day7: prod7

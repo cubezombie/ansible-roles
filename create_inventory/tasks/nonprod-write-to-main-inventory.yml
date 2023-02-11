@@ -47,3 +47,46 @@
         line: "{{ dlt_day12_hosts.content|b64decode }}"
         insertafter: '^\[{{ dlt_day12 }}\]'
         state: present
+
+    - name: write {{ qa_day7 }}
+      lineinfile:
+        path: "{{ inventory_out_nonprod }}"
+        line: "{{ qa_day7_hosts.content|b64decode }}"
+        insertafter: '^\[{{ qa_day7 }}\]'
+        state: present
+        
+    - name: write {{ qa_day8 }}
+      lineinfile:
+        path: "{{ inventory_out_nonprod }}"
+        line: "{{ qa_day8_hosts.content|b64decode }}"
+        insertafter: '^\[{{ qa_day8 }}\]'
+        state: present
+        
+    - name: write {{ qa_day9 }}
+      lineinfile:
+        path: "{{ inventory_out_nonprod }}"
+        line: "{{ qa_day9_hosts.content|b64decode }}"
+        insertafter: '^\[{{qa_day9}}\]'
+        state: present
+        
+    - name: write {{ qa_day10 }}
+      lineinfile:
+        path: "{{ inventory_out_nonprod }}"
+        line: "{{ qa_day10_hosts.content|b64decode }}"
+        insertafter: '^\[{{ qa_day10 }}\]'
+        state: present
+        
+    - name: write {{ qa_day11 }}
+      lineinfile:
+        path: "{{ inventory_out_nonprod }}"
+        line: "{{ qa_day11_hosts.content|b64decode }}"
+        insertafter: '^\[{{ qa_day11 }}\]'
+        state: present
+        
+    - name: write {{ qa_day12 }}
+      lineinfile:
+        path: "{{ inventory_out_nonprod }}"
+        line: "{{ qa_day12_hosts.content|b64decode }}"
+        insertafter: '^\[{{ qa_day12 }}\]'
+        state: present
+        

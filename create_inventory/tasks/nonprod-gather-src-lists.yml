@@ -33,3 +33,34 @@
       ansible.builtin.slurp:
         src: "{{ inventory_src_nonprod }}{{ dlt_day12 }}_hostlist.txt"
       register: dlt_day12_hosts
+
+    - name: gather  {{ qa_day7 }}
+      ansible.builtin.slurp:
+        src: "{{ inventory_src_nonprod }}{{ qa_day7 }}_hostlist.txt"
+      register: qa_day7_hosts
+ 
+    - name: gather {{ qa_day8 }}
+      ansible.builtin.slurp:
+        src: "{{ inventory_src_nonprod }}{{ qa_day8 }}_hostlist.txt"
+      register: qa_day8_hosts
+ 
+    - name: gather {{ qa_day9 }}
+      ansible.builtin.slurp:
+        src: "{{ inventory_src_nonprod }}{{ qa_day9 }}_hostlist.txt"
+      register: qa_day9_hosts
+ 
+    - name: gather {{ qa_day10 }}
+      ansible.builtin.slurp:
+        src: "{{ inventory_src_nonprod }}{{ qa_day10 }}_hostlist.txt"
+      register: qa_day10_hosts
+ 
+    - name: gather {{ qa_day11 }}
+      ansible.builtin.slurp:
+        src: "{{ inventory_src_nonprod }}{{ qa_day11 }}_hostlist.txt"
+      register: qa_day11_hosts
+    
+    - name: gather {{ qa_day12 }}
+      ansible.builtin.slurp:
+        src: "{{ inventory_src_nonprod }}{{ qa_day12 }}_hostlist.txt"
+      register: qa_day12_hosts
+
