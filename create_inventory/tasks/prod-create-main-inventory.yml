@@ -1,0 +1,18 @@
+---
+    - name: Create new Prod inventory file
+      copy:
+        dest: "{{ inventory_out_prod }}"
+        content: |
+          [excludes]
+          [{{ prod_day7 }}]
+          [{{ prod_day8 }}]
+          [{{ prod_day9 }}]
+          [{{ prod_day10 }}]
+          [{{ prod_day11 }}]
+          [{{ prod_day12 }}]
+          [{{ dr_day7 }}]
+          [{{ dr_day8 }}]
+          [{{ dr_day9 }}]
+          [{{ dr_day10 }}]
+          [{{ dr_day11 }}]
+          [{{ dr_day12 }}]
