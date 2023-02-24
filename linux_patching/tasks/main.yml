@@ -9,17 +9,10 @@
 
 ## Check reboot flag in /opt/Tanium/TaniumClient/Tools/CustomTags.txt
 - name: Check Reboot Flag
-  shell: "grep -E 'TRUE|FALSE' "{{ custom_flag_path }}""
+  shell: "grep -E 'TRUE|FALSE' {{ custom_flag_path }}"
   register: autoreboot
-  failed_when: "{{ custom_flag_failed_when }}"
+  failed_when: "autoreboot.rc != 1 and autoreboot.rc != 0"
   ignore_errors: true
-  tags:
-    - always
-
-## Print hosts who have autoreboot set to false
-- name: Print VMs with autoreboot set to false
-  when: "{{ custom_flag_when }"
-  debug: msg="{{ custom_flag_print_out }}""
   tags:
     - always
 
@@ -31,7 +24,7 @@
   yum:
     name: "*"
     state: latest
-  when: "{{ yum_update_when }}"
+  when: (autoreboot.stdout is search("TRUE") or autoreboot.stdout is search("FALSE"))
   tags: [ never, update ]
 
 ## Check if RHEL6 VMs need a reboot after update
@@ -40,8 +33,8 @@
   register: reboot_needed6
   ignore_errors: true
   changed_when: false
-  failed_when: "{{ chk_reboot_rhel6_failed_when }}"
-  when: "{{ chk_reboot_rhel6_when }}"
+  failed_when: "reboot_needed6.rc == 2"
+  when: (ansible_distribution == "RedHat" and ansible_distribution_major_version == "6")
   tags: [ never, update ]
 
 ## Check if RHEL7/8/9 VMs need a reboot after update
@@ -50,8 +43,10 @@
   register: reboot_needed
   ignore_errors: true
   changed_when: false
-  failed_when: "{{ chk_reboot_rhel7_failed_when }}"
-  when: "{{ chk_reboot_rhel7_when }}"
+  failed_when: "reboot_needed.rc == 2"
+  when: (ansible_distribution == "RedHat" and ansible_distribution_major_version == "7") or
+        (ansible_distribution == "RedHat" and ansible_distribution_major_version == "8") or
+        (ansible_distribution == "RedHat" and ansible_distribution_major_version == "9")
   tags: [ never, update ]
 
 ## Reboot RHEL6 VMs
@@ -63,7 +58,7 @@
     reboot_timeout: "{{ server_reboot_timeout }}"
     test_command: "{{ server_reboot_test_cmd }}"
   ignore_errors: true
-  when: "{{ server_reboot_when_rhel6 }}"
+  when: (ansible_distribution == "RedHat" and ansible_distribution_major_version == "6" and reboot_needed6.rc == 0 and autoreboot.stdout is search("TRUE-PT"))
   tags: [ never, update ]
 
 ## Reboot RHEL7+ VMs
@@ -75,7 +70,15 @@
     reboot_timeout: "{{ server_reboot_timeout }}"
     test_command: "{{ server_reboot_test_cmd }}"
   ignore_errors: true
-  when: "{{ server_reboot_when_rhel7 "}}
+  when: (ansible_distribution == "RedHat" and ansible_distribution_major_version == "7" and reboot_needed.rc == 1 and autoreboot.stdout is search("TRUE-PT")) or 
+        (ansible_distribution == "RedHat" and ansible_distribution_major_version == "8" and reboot_needed.rc == 1 and autoreboot.stdout is search("TRUE-PT")) or 
+        (ansible_distribution == "RedHat" and ansible_distribution_major_version == "9" and reboot_needed.rc == 1 and autoreboot.stdout is search("TRUE-PT"))
   tags: [ never, update ]
 
+## Print hosts who have autoreboot set to false
+- name: Print VMs with autoreboot set to false
+  when: autoreboot.stdout is search("FALSE")
+  debug: msg="{{ ansible_hostname }} is not set to autoreboot but may have been updated and may need to be rebooted manually."
+  tags:
+    - always
 
