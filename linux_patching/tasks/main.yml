@@ -1,11 +1,10 @@
 ---
 - setup:
-    filter: "{{ item }}"
-  loop:
-    - 'ansible_distribution*'
-    - 'ansible_hostname'
-  tags:
-    - always
+    gather_subset: min
+    filter:
+      - ansible_distribution*
+      - ansible_hostname
+    tags: always
 
 ## Check reboot flag in /opt/Tanium/TaniumClient/Tools/CustomTags.txt
 - name: Check Reboot Flag
